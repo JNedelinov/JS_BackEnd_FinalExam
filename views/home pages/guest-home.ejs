@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/header'); %>
+
+<body>
+    <div class="container">
+        <%- include('../partials/navbar'); %>
+
+        <% if (locals.error) { %>
+            <%- include('../partials/user_notifications'); %>
+        <% } %>
+
+        <main>
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h1 class="display-4">Tutorials</h1>
+                    <p class="lead">Start Self-Learning Today: Be the best Developer in the company</p>
+                </div>
+            </div>
+
+            <div>
+                <h1 class="text-center">Top Courses</h1>
+                <div class="container mt-3">
+
+                    <%if (posts) { %>
+                    <div class="row d-flex justify-content-center">
+                        <div class="card-deck">
+                            <% for (let i = 0; i < posts.length; i++) { %>
+                            <div class="card mb-4">
+                                <img class="card-img-top"
+                                    src="<%= posts[i].imageUrl %>"
+                                    alt="Card image cap" width="400">
+                                <div class="card-body">
+                                    <h4 class="card-title"><%= posts[i].title%></h4>
+                                    <small class="float-right">Enrolled: <%= posts[i].usersLiked.length %></small>
+                                </div>
+                            </div>
+                            <% } %>
+                        </div>
+                    </div>
+                    <% } else { %>
+                    <h4 class="text-center">No courses...</h4>
+                    <% } %>
+
+                </div>
+            </div>
+        </main>
+        <%- include('../partials/footer')%>
+
+    </div>
+
+    <% if (locals.error) { %>
+        <script src="/js/script.js"></script>
+        <script>
+            setTimeout(() => {
+            window.location.assign('/');
+            }, 1000); 
+        </script>
+    <% } %>
+</body>
+
+</html>

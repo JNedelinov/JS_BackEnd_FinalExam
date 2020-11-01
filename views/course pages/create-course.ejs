@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <%- include('../partials/header'); %>
+
+    <body>
+      <div class="container">
+        <%- include('../partials/navbar'); %>
+  
+        <% if (locals.errors) { %>
+        <%- include('../partials/post_notifications'); %>
+        <% } %>
+
+        <% if (!locals.errors) { %>
+
+        <main>
+            <form class="text-center border border-light p-5" action="/create" method="POST">
+                <h1>Create Course</h1>
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" class="form-control" placeholder="Course name" name="title" value="">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" placeholder="Description" name="description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="imageUrl">Image url</label>
+                    <input type="text" class="form-control" placeholder="Image Url" name="imageUrl" value="">
+                </div>
+                <div class="form-group">
+                    <label for="duration">Duration</label>
+                    <input type="text" class="form-control" placeholder="4 weeks" name="duration" value="">
+                </div>
+                <button type="submit" class="btn btn-primary">Create</button>
+            </form>
+        </main>
+
+        <% } else { %>
+
+            <main>
+                <form class="text-center border border-light p-5" action="/create" method="POST">
+                    <h1>Create Course</h1>
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" placeholder="Course name" name="title" value="<%= post.title %>">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea class="form-control" placeholder="Description" name="description"><%= post.description %></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="imageUrl">Image url</label>
+                        <input type="text" class="form-control" placeholder="Image Url" name="imageUrl" value="<%= post.imageUrl %>">
+                    </div>
+                    <div class="form-group">
+                        <label for="duration">Duration</label>
+                        <input type="text" class="form-control" placeholder="4 weeks" name="duration" value="<%= post.duration %>">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </form>
+            </main>
+
+        <% } %>
+
+        <%- include('../partials/footer'); %>
+
+    </div>
+
+    <% if (locals.errors) { %>
+        <script src="/js/script.js"></script>
+    <% } %>
+</body>
+
+</html>

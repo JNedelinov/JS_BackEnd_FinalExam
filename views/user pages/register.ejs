@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <%- include('../partials/header'); %>
+
+    <body>
+      <div class="container">
+        <%- include('../partials/navbar'); %>
+  
+        <% if (locals.error) { %>
+        <%- include('../partials/user_notifications'); %>
+        <% } %>
+
+        <% if (!locals.error) { %>
+
+        <main>
+            <form class="text-center border border-light p-5" action="/register" method="POST">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" placeholder="Username" name="username" value="">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" placeholder="Password" name="password" value="">
+                </div>
+
+                <div class="form-group">
+                    <label for="rePassword">Repeat Password</label>
+                    <input type="password" class="form-control" placeholder="Repeat-Password" name="rePassword"
+                        value="">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        </main>
+
+    <% } else { %>
+
+        <main>
+            <form class="text-center border border-light p-5" action="/register" method="POST">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" placeholder="Username" name="username" value="<%= register.username%>">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" placeholder="Password" name="password" value="<%= register.password%>">
+                </div>
+
+                <div class="form-group">
+                    <label for="rePassword">Repeat Password</label>
+                    <input type="password" class="form-control" placeholder="Repeat-Password" name="rePassword"
+                        value="<%= register.rePassword%>">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        </main>
+
+        <% } %>
+
+        <%- include('../partials/footer')%>
+
+    </div>
+
+    <% if (locals.error) { %>
+        <script src="/js/script.js"></script>
+    <% } %>
+</body>
+
+</html>

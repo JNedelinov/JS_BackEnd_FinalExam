@@ -1,0 +1,10 @@
+<section class="notifications">
+    <% if (locals.error.length > 1) { %>
+        <% for (let i = 0; i < locals.error.length; i++) { %>
+        <p class="notification-message"><%= locals.error[i] %></p>
+        <% } %>
+    <% } else { %>
+        <p class="notification-message"> <%= locals.error[0] %></p>
+    <% } %>
+</section>
+  

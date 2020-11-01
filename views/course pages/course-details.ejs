@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/header'); %>
+
+    <body>
+      <div class="container">
+        <%- include('../partials/navbar'); %>
+  
+        <% if (locals.errors) { %>
+        <%- include('../partials/post_notifications'); %>
+        <% } %>
+
+        <main>
+            <div class="container">
+                <h1 class="my-4">Title : <%= post.title %>
+                </h1>
+
+                <div class="row">
+
+                    <div class="col-md-8">
+                        <img class="img-fluid"
+                            src="<%= post.imageUrl %>"
+                            alt="JavaScript" />
+                    </div>
+
+                    <div class="col-md-4 text-center">
+                        <h4 class="my-3">Duration</h4>
+                        <p><%= post.duration %></p>
+                        <h3 class="my-3">Description</h3>
+                        <p><%= post.description %></p>
+
+                        <% if (locals.user._id == post.creatorId) { %>
+                        <a class="btn btn-danger" href="/delete/<%= post._id %>">Delete</a>
+                        <a class="btn btn-warning" href="/edit/<%= post._id%>">Edit</a>
+                        <% } else { %>
+                            <% if(post.usersLiked.includes(locals.user._id)) { %>
+                        <span class="enrolled-span">You are already enrolled</span>
+                            <% } else {%>
+                        <a class="btn btn-primary" href="/enroll/<%= post._id%>">Enroll</a>
+                            <% } %>
+                        <% } %>
+
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <%- include('../partials/footer')%>
+
+    </div>
+
+    <% if (locals.errors) { %>
+        <script src="/js/script.js"></script>
+    <% } %>
+</body>
+
+</html>

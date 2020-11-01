@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <%- include('../partials/header'); %>
+
+    <body>
+      <div class="container">
+        <%- include('../partials/navbar'); %>
+  
+        <% if (locals.error) { %>
+        <%- include('../partials/user_notifications'); %>
+        <% } %>
+
+        <% if (!locals.error) { %>
+        <main>
+            <form class="text-center border border-light p-5" action="/login" method="POST">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" placeholder="Username" name="username" value="">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" placeholder="Password" name="password" value="">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </main>
+
+        <% } else { %>
+
+        <main>
+            <form class="text-center border border-light p-5" action="/login" method="POST">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" placeholder="Username" name="username" value="<%= login.username %>">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" placeholder="Password" name="password" value="<%= login.password %>">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </main>
+
+        <% } %>
+
+        <%- include('../partials/footer')%>
+
+    </div>
+
+    <% if (locals.error) { %>
+        <script src="/js/script.js"></script>
+    <% } %>
+</body>
+
+</html>
